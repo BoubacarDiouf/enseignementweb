@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'Avis Étudiant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+   
+</head>
+<body>
+    <div class="container">
+        <h1>Formulaire d'Avis Étudiant</h1>
+        <form id="avis-form" action="#" method="POST">
+            <label for="avis">Votre avis :</label>
+            <textarea id="avis" name="avis" rows="8" placeholder="Écrivez votre avis ici..." required></textarea>
+
+            <input type="submit" value="Soumettre">
+        </form>
+        <p class="feedback-message" id="feedback-message">Merci ! Votre avis a été soumis avec succès.</p>
+    </div>
+
+    <script>
+        const form = document.getElementById('avis-form');
+        const feedbackMessage = document.getElementById('feedback-message');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche la soumission par défaut du formulaire
+
+            // Affiche le message de confirmation
+            feedbackMessage.style.display = 'block';
+
+            // Réinitialise le formulaire après 3 secondes
+            setTimeout(function() {
+                form.reset();
+                feedbackMessage.style.display = 'none';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

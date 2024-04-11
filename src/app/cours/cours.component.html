@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remise de Syllabus</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .back {
+            display: block;
+            margin-bottom: 20px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" class="back" onclick="goBack()"><i class="fas fa-arrow-left"></i> Retour</a>
+    <div class="container">
+        <h1>Remise de Syllabus</h1>
+        <form id="syllabus-form" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="syllabus">Téléverser le syllabus :</label>
+                <input type="file" id="syllabus" name="syllabus" accept=".pdf" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Téléverser</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        
+        const form = document.getElementById('syllabus-form');
+        
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(form);
+            
+            fetch('/upload-syllabus', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Syllabus téléversé avec succès!');
+                    form.reset();
+                } else {
+                    alert('Une erreur s\'est produite lors du téléversement du syllabus.');
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                alert('Une erreur s\'est produite lors du téléversement du syllabus.');
+            });
+        });
+    </script>
+</body>
+</html>

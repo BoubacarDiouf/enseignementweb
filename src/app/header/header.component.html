@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cahier de Texte </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+   
+</head>
+<body>
+    <div class="container">
+        <h1>Cahier de Texte</h1>
+        <form id="textbook-form" action="#" method="POST">
+            <label for="course">Nom du Cours :</label>
+            <input type="text" id="course" name="course" required>
+            <select id="classe" name="classe" required>
+            <label for="teacher">Choisissez votre classe :</label>
+                <option value="">Sélectionnez une classe</option>
+                <option value="classe1">DUT1</option>
+                <option value="classe2">DUT2</option>
+                <option value="classe3">DSTI1A</option>
+                <option value="classe3">DSTI1B</option>
+                <option value="classe3">DSTI1C</option>
+                <option value="classe3">DSTI1D</option>
+                <option value="classe3">DSTI2A</option>
+                <option value="classe3">DSTI2B</option>
+                <option value="classe3">DSTI2C</option>
+                <option value="classe3">DIC1</option>
+                <option value="classe3">GLSIA</option>
+                <option value="classe3">GLSIB</option>
+                <option value="classe3">DIT1</option>
+                <option value="classe3">DIC2</option>
+            </select>
+            <label for="activity">Activités du Cours :</label>
+            <textarea id="activity" name="activity" rows="8" placeholder="Décrivez les activités du cours..." required></textarea>
+
+            <input type="submit" value="Soumettre">
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('textbook-form');
+        const feedbackMessage = document.getElementById('feedback-message');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche la soumission par défaut du formulaire
+
+            // Affiche le message de confirmation
+            feedbackMessage.style.display = 'block';
+
+            // Réinitialise le formulaire après 3 secondes
+            setTimeout(function() {
+                form.reset();
+                feedbackMessage.style.display = 'none';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

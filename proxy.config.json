@@ -1,0 +1,8 @@
+{
+    "/api-enseignements/**": {
+        "target": "http://localhost/api-enseignements/",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}
